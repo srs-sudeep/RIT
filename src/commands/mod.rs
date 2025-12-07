@@ -27,4 +27,5 @@ pub mod ls_tree;
 pub mod commit_tree;
 pub mod log;
 pub mod add;
+pub mod commit;
 

@@ -118,11 +118,15 @@ enum Commands {
 
     /// Record changes to the repository
     ///
-    /// Creates a new commit with the current tree state.
+    /// Creates a new commit from the staging area (index).
     Commit {
         /// The commit message
         #[arg(short, long)]
         message: String,
+
+        /// Automatically stage files that have been modified (not yet implemented)
+        #[arg(short = 'a')]
+        auto_add: bool,
     },
 
     /// Show commit logs
@@ -180,10 +184,8 @@ fn main() -> Result<()> {
             commands::commit_tree::run(tree_hash, parents.clone(), message)?;
         }
 
-        Commands::Commit { message } => {
-            println!("Creating commit: {}", message);
-            println!("⚠️  Not yet implemented. Coming in Phase 3!");
-            // TODO: Implement in Phase 3
+        Commands::Commit { message, auto_add } => {
+            commands::commit::run(message, *auto_add)?;
         }
 
         Commands::Log { oneline, graph } => {

@@ -27,7 +27,7 @@ use crate::commands::cat_file;
 /// Reads HEAD file which may point to:
 /// - A branch ref (e.g., "ref: refs/heads/main")
 /// - A direct commit hash (detached HEAD)
-fn read_head(repo: &Repository) -> Result<Option<String>> {
+pub fn read_head(repo: &Repository) -> Result<Option<String>> {
     let head_path = repo.head_path();
     
     if !head_path.exists() {

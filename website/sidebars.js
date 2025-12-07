@@ -17,6 +17,7 @@ const sidebars = {
         'commands/commit-tree',
         'commands/log',
         'commands/add',
+        'commands/commit',
       ],
     },
   ],

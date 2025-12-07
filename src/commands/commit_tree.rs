@@ -28,7 +28,7 @@ use crate::commands::hash_object;
 /// - GIT_AUTHOR_NAME / GIT_COMMITTER_NAME
 /// - GIT_AUTHOR_EMAIL / GIT_COMMITTER_EMAIL
 /// - Falls back to system defaults
-fn get_author() -> Author {
+pub fn get_author() -> Author {
     let name = env::var("GIT_AUTHOR_NAME")
         .or_else(|_| env::var("GIT_COMMITTER_NAME"))
         .unwrap_or_else(|_| {

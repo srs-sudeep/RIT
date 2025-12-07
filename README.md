@@ -87,7 +87,7 @@ rit log
 | `rit commit-tree <tree> -m <msg>` | Create commit object from tree | ✅ Complete |
 | `rit log [--oneline] [--graph]` | Show commit history | ✅ Complete |
 | `rit add <file>...` | Stage files for commit | ✅ Complete |
-| `rit commit -m <msg>` | Create a new commit | ⏳ Pending |
+| `rit commit -m <msg>` | Create a new commit | ✅ Complete |
 | `rit status` | Show working tree status | ⏳ Pending |
 | `rit branch [name]` | List or create branches | ⏳ Pending |
 | `rit checkout <ref>` | Switch branches or restore files | ⏳ Pending |
