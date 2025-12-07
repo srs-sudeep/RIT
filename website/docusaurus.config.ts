@@ -5,10 +5,10 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Rit',
   tagline: 'A Git Implementation in Rust',
-  favicon: 'img/favicon.ico',
-  url: 'https://rit-docs.vercel.app', // Update with your Vercel domain
-  baseUrl: '/',
-  organizationName: 'your-username',
+  favicon: 'img/rit-logo-small.svg',
+  url: 'https://srs-sudeep.github.io',
+  baseUrl: '/rit/',
+  organizationName: 'srs-sudeep',
   projectName: 'rit',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -23,7 +23,7 @@ const config: Config = {
         docs: {
           path: './docs', // Use website/docs folder
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/your-username/rit/tree/main/website/',
+          editUrl: 'https://github.com/srs-sudeep/rit/tree/main/website/',
         },
         blog: false,
         theme: {
@@ -33,8 +33,13 @@ const config: Config = {
     ],
   ],
   themeConfig: {
+    image: 'img/rit-logo.svg',
     navbar: {
       title: 'Rit',
+      logo: {
+        alt: 'Rit Logo',
+        src: 'img/rit-logo-small.svg',
+      },
       items: [
         {
           type: 'docSidebar',
@@ -43,7 +48,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/your-username/rit',
+          href: 'https://github.com/srs-sudeep/rit',
           label: 'GitHub',
           position: 'right',
         },
@@ -51,7 +56,48 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      copyright: `Built with Rust and ❤️`,
+      copyright: `Copyright © ${new Date().getFullYear()} Sudeep Ranjan Sahoo. Built with Rust and ❤️`,
+      links: [
+        {
+          title: 'Docs',
+          items: [
+            {
+              label: 'Introduction',
+              to: '/docs/intro',
+            },
+            {
+              label: 'Architecture',
+              to: '/docs/architecture',
+            },
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/srs-sudeep/rit',
+            },
+            {
+              label: 'Issues',
+              href: 'https://github.com/srs-sudeep/rit/issues',
+            },
+          ],
+        },
+        {
+          title: 'More',
+          items: [
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/sudeep-ranjan-sahoo-b82355232/',
+            },
+            {
+              label: 'Twitter/X',
+              href: 'https://x.com/SUDEEPRANJANSA1',
+            },
+          ],
+        },
+      ],
     },
     prism: {
       theme: prismThemes.github,

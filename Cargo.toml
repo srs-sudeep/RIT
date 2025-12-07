@@ -2,12 +2,15 @@
 name = "rit"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Sudeep Ranjan Sahoo <sudeep.ranjan.sahoo@example.com>"]
 description = "A Git implementation in Rust for educational purposes"
 readme = "README.md"
 license = "MIT"
 keywords = ["git", "vcs", "version-control", "rust"]
 categories = ["command-line-utilities", "development-tools"]
+repository = "https://github.com/srs-sudeep/rit"
+homepage = "https://github.com/srs-sudeep/rit"
+documentation = "https://srs-sudeep.github.io/rit"
 
 [dependencies]
 # CLI argument parsing

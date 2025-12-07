@@ -24,9 +24,12 @@ use rit::commands;
 ///
 /// This is an educational implementation of Git's core functionality,
 /// built from scratch to understand version control internals.
+///
+/// Created by Sudeep Ranjan Sahoo
+/// GitHub: https://github.com/srs-sudeep
 #[derive(Parser)]
 #[command(name = "rit")]
-#[command(author = "Your Name")]
+#[command(author = "Sudeep Ranjan Sahoo <sudeep.ranjan.sahoo@example.com>")]
 #[command(version = "0.1.0")]
 #[command(about = "A Git implementation in Rust", long_about = None)]
 struct Cli {

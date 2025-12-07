@@ -3,6 +3,10 @@
 //! Rit is an educational implementation of Git's core functionality,
 //! built from scratch in Rust to understand version control internals.
 //!
+//! **Author**: [Sudeep Ranjan Sahoo](https://github.com/srs-sudeep)  
+//! **Repository**: <https://github.com/srs-sudeep/rit>  
+//! **Documentation**: <https://srs-sudeep.github.io/rit>
+//!
 //! ## Architecture Overview
 //!
 //! Git (and Rit) is built on a simple but powerful concept: a content-addressable filesystem.

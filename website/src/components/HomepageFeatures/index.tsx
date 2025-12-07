@@ -5,51 +5,61 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  emoji: string;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Educational',
+    emoji: '📚',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Learn how Git works internally by building it yourself. Understand
+        content-addressable storage, DAGs, and version control fundamentals.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Rust-Powered',
+    emoji: '🦀',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Built with Rust for performance and safety. Demonstrates systems
+        programming concepts including file I/O, hashing, and compression.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Well Documented',
+    emoji: '📖',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Comprehensive documentation with examples, architecture guides, and
+        command references. Perfect for learning and contributing.
+      </>
+    ),
+  },
+  {
+    title: 'Open Source',
+    emoji: '🌟',
+    description: (
+      <>
+        MIT licensed and open source. Feel free to use, modify, and learn from
+        this implementation.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, emoji, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--3')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <div style={{fontSize: '3rem', marginBottom: '1rem'}}>{emoji}</div>
+        <Heading as="h3">{title}</Heading>
       </div>
       <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
         <p>{description}</p>
       </div>
     </div>

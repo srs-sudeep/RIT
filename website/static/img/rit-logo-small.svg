@@ -1,0 +1,5 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="32" cy="32" r="28" fill="#000000" stroke="#FF6B35" stroke-width="2"/>
+  <text x="32" y="42" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FF6B35" text-anchor="middle">RIT</text>
+</svg>
+

@@ -50,9 +50,9 @@ const config: Config = {
   title: 'Rit',
   tagline: 'A Git Implementation in Rust',
   favicon: 'img/favicon.ico',
-  url: 'https://your-username.github.io',
+  url: 'https://srs-sudeep.github.io',
   baseUrl: '/rit/',
-  organizationName: 'your-username',
+  organizationName: 'srs-sudeep',
   projectName: 'rit',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -66,7 +66,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/your-username/rit/tree/main/',
+          editUrl: 'https://github.com/srs-sudeep/rit/tree/main/website/',
         },
         blog: false,
         theme: {
@@ -86,7 +86,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/your-username/rit',
+          href: 'https://github.com/srs-sudeep/rit',
           label: 'GitHub',
           position: 'right',
         },

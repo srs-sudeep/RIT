@@ -2,6 +2,8 @@
 
 Welcome to **Rit** - a Git implementation written from scratch in Rust!
 
+**Created by [Sudeep Ranjan Sahoo](https://github.com/srs-sudeep)** | [GitHub](https://github.com/srs-sudeep/rit) | [Documentation](https://srs-sudeep.github.io/rit) | [LinkedIn](https://www.linkedin.com/in/sudeep-ranjan-sahoo-b82355232/) | [Twitter/X](https://x.com/SUDEEPRANJANSA1)
+
 ## What is Rit?
 
 Rit is an educational project that reimplements Git's core functionality to understand:

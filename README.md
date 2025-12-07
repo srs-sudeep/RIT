@@ -1,18 +1,42 @@
 # 🦀 Rit - A Git Implementation in Rust
 
+<div align="center">
+
+```
+██████╗ ██╗████████╗
+██╔══██╗██║╚══██╔══╝
+██████╔╝██║   ██║   
+██╔══██╗██║   ██║   
+██║  ██║██║   ██║   
+╚═╝  ╚═╝╚═╝   ╚═╝   
+                    
+  A Git Implementation
+      in Rust
+```
+
 > **"Write Yourself a Git"** - Learning version control internals by building one from scratch.
 
 [![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/docs-docusaurus-blue)](https://srs-sudeep.github.io/rit)
 
-## 📋 Table of Contents
+**Created by [Sudeep Ranjan Sahoo](https://github.com/srs-sudeep)**
 
-- [Quick Start](#-quick-start)
-- [Commands Reference](#-commands-reference)
-- [Development Roadmap](#-development-roadmap)
-- [Project Structure](#-project-structure)
-- [Documentation](#-documentation)
-- [Contributing](#-contributing)
+</div>
+
+---
+
+## 📖 About
+
+Rit is an educational implementation of Git's core functionality, built from scratch in Rust. This project demonstrates how version control systems work internally by reimplementing Git's fundamental operations.
+
+### Why Build Your Own Git?
+
+Building Git from scratch teaches you:
+- **Content-addressable storage** - How Git stores data efficiently
+- **DAG structures** - Understanding commit graphs and branching
+- **Binary formats** - Working with compressed data and hashing
+- **Systems programming** - File I/O, process management, and more
 
 ---
 
@@ -29,19 +53,14 @@ rustc --version
 cargo --version
 ```
 
-### Build & Run
+### Installation
 
 ```bash
-# Clone and enter project
-cd /Users/srs/Desktop/Dev/RIT
+# Clone the repository
+git clone https://github.com/srs-sudeep/rit.git
+cd rit
 
 # Build the project
-cargo build
-
-# Run rit
-cargo run -- --help
-
-# Build release version
 cargo build --release
 
 # Install globally (optional)
@@ -54,238 +73,204 @@ cargo install --path .
 # Initialize a new repository
 rit init
 
-# Hash a file
-rit hash-object README.md
-
-# Store a file in the object database
-rit hash-object -w README.md
-
-# Read an object
-rit cat-file -p <hash>
-
-# Create a tree from current directory
-rit write-tree
+# Stage files
+rit add file1.txt file2.txt
 
 # Create a commit
 rit commit -m "Initial commit"
 
 # View commit history
-rit log
-```
+rit log --oneline
 
----
-
-## 📖 Commands Reference
-
-| Command | Description | Status |
-|---------|-------------|--------|
-| `rit init` | Initialize a new repository | ✅ Complete |
-| `rit hash-object [-w] <file>` | Hash file contents, optionally write to object store | ✅ Complete |
-| `rit cat-file -p <hash>` | Pretty-print object contents | ✅ Complete |
-| `rit write-tree` | Create tree object from current directory | ✅ Complete |
-| `rit ls-tree <hash>` | List contents of a tree object | ✅ Complete |
-| `rit commit-tree <tree> -m <msg>` | Create commit object from tree | ✅ Complete |
-| `rit log [--oneline] [--graph]` | Show commit history | ✅ Complete |
-| `rit add <file>...` | Stage files for commit | ✅ Complete |
-| `rit commit -m <msg>` | Create a new commit | ✅ Complete |
-| `rit status` | Show working tree status | ⏳ Pending |
-| `rit branch [name]` | List or create branches | ⏳ Pending |
-| `rit checkout <ref>` | Switch branches or restore files | ⏳ Pending |
-| `rit diff` | Show changes between commits | ⏳ Pending |
-| `rit graph` | Visualize commit history | ⏳ Pending |
-
----
-
-## 🗺️ Development Roadmap
-
-### Phase 1: Project Setup ✅
-- [x] Initialize Rust project with Cargo
-- [x] Set up CLI with clap
-- [x] Create project structure
-- [ ] Set up Docusaurus documentation
-
-### Phase 2: Object Storage (The Plumbing)
-- [ ] Implement blob object format
-- [ ] `hash-object` command
-- [ ] `cat-file` command
-- [ ] Tree object format
-- [ ] `write-tree` command
-- [ ] `ls-tree` command
-
-### Phase 3: Commits & History
-- [ ] Commit object format
-- [ ] `commit-tree` low-level command
-- [ ] Staging area (index file)
-- [ ] `add` command
-- [ ] `commit` high-level command
-- [ ] `log` command
-
-### Phase 4: Branches & References
-- [ ] References system (`refs/heads/`)
-- [ ] `branch` command
-- [ ] `checkout` command
-- [ ] `tag` command
-
-### Phase 5: Advanced Features
-- [ ] `status` command
-- [ ] `diff` command (Myers algorithm)
-- [ ] `.ritignore` support
-- [ ] `graph` visualization
-
----
-
-## 📁 Project Structure
-
-```
-RIT/
-├── Cargo.toml              # Rust dependencies
-├── Cargo.lock              # Locked dependency versions
-├── README.md               # This file
-├── .gitignore              # Git ignore rules
-│
-├── src/
-│   ├── main.rs             # CLI entry point
-│   ├── lib.rs              # Library root
-│   ├── commands/           # Command implementations
-│   │   ├── mod.rs
-│   │   ├── init.rs
-│   │   ├── hash_object.rs
-│   │   ├── cat_file.rs
-│   │   ├── commit.rs
-│   │   └── ...
-│   └── objects/            # Git object types
-│       ├── mod.rs
-│       ├── blob.rs
-│       ├── tree.rs
-│       └── commit.rs
-│
-├── docs/                   # Markdown documentation
-│   ├── intro.md
-│   ├── architecture.md
-│   └── commands/
-│
-└── website/                # Docusaurus site (generated)
-    ├── docusaurus.config.js
-    ├── docs/
-    └── src/
+# List tree contents
+rit ls-tree <tree-hash>
 ```
 
 ---
 
 ## 📚 Documentation
 
-We use [Docusaurus](https://docusaurus.io/) for documentation. All documentation files are in the `website/docs/` folder.
+### Online Documentation
 
-### Local Development
+📖 **[Full Documentation](https://srs-sudeep.github.io/rit)** - Complete guide with examples, architecture details, and command reference.
+
+### Local Documentation
 
 ```bash
-# Navigate to project root
-cd /Users/srs/Desktop/Dev/RIT
-
-# Setup Docusaurus (one-time)
-./scripts/setup-docs.sh
-
-# Start documentation server
+# Start local documentation server
 cd website
+npm install
 npm start
 # Opens at http://localhost:3000
 ```
 
-### Deploy to Vercel
-
-#### Option 1: Vercel CLI (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy from project root
-vercel
-
-# Follow prompts:
-# - Set up and deploy? Yes
-# - Which scope? (your account)
-# - Link to existing project? No
-# - Project name? rit-docs (or your choice)
-# - Directory? ./website
-# - Override settings? No
-
-# For production deployment
-vercel --prod
-```
-
-#### Option 2: Vercel Dashboard
-
-1. Go to [vercel.com](https://vercel.com) and sign in
-2. Click **"Add New Project"**
-3. Import your Git repository
-4. Configure:
-   - **Framework Preset**: Other
-   - **Root Directory**: `website`
-   - **Build Command**: `npm install && npm run build`
-   - **Output Directory**: `build`
-5. Click **Deploy**
-
-#### Option 3: GitHub Integration
-
-1. Push your code to GitHub
-2. Go to Vercel Dashboard → Add Project
-3. Import from GitHub
-4. Vercel will auto-detect the `vercel.json` configuration
-
 ### Documentation Structure
 
-```
-website/                 # Docusaurus site
-├── docs/                # Documentation markdown files (edit these!)
-│   ├── intro.md
-│   ├── architecture.md
-│   └── commands/
-│       ├── init.md
-│       ├── hash-object.md
-│       ├── cat-file.md
-│       └── write-tree.md
-├── docusaurus.config.ts # Docusaurus configuration
-└── build/               # Built site (for deployment)
-```
-
-**Note**: Edit documentation files directly in `website/docs/` folder.
+- **[Introduction](website/docs/intro.md)** - Getting started with Rit
+- **[Architecture](website/docs/architecture.md)** - How Git/Rit works internally
+- **[Commands](website/docs/commands/)** - Complete command reference
+  - [init](website/docs/commands/init.md)
+  - [hash-object](website/docs/commands/hash-object.md)
+  - [cat-file](website/docs/commands/cat-file.md)
+  - [write-tree](website/docs/commands/write-tree.md)
+  - [ls-tree](website/docs/commands/ls-tree.md)
+  - [commit-tree](website/docs/commands/commit-tree.md)
+  - [log](website/docs/commands/log.md)
+  - [add](website/docs/commands/add.md)
+  - [commit](website/docs/commands/commit.md)
 
 ---
 
-## 🔧 Development Commands
+## 📖 Commands Reference
 
-### Daily Development
+### Implemented Commands
+
+| Command | Description | Status |
+|---------|-------------|--------|
+| `rit init` | Initialize a new repository | ✅ |
+| `rit hash-object [-w] <file>` | Hash file contents, optionally write to object store | ✅ |
+| `rit cat-file -p <hash>` | Pretty-print object contents | ✅ |
+| `rit write-tree` | Create tree object from current directory | ✅ |
+| `rit ls-tree <hash>` | List contents of a tree object | ✅ |
+| `rit commit-tree <tree> -m <msg>` | Create commit object from tree | ✅ |
+| `rit log [--oneline] [--graph]` | Show commit history | ✅ |
+| `rit add <file>...` | Stage files for commit | ✅ |
+| `rit commit -m <msg>` | Create a new commit | ✅ |
+
+### Planned Commands
+
+| Command | Description | Status |
+|---------|-------------|--------|
+| `rit status` | Show working tree status | 🔨 In Progress |
+| `rit branch [name]` | List or create branches | ⏳ Planned |
+| `rit checkout <ref>` | Switch branches or restore files | ⏳ Planned |
+| `rit diff` | Show changes between commits | ⏳ Planned |
+| `rit graph` | Visualize commit history | ⏳ Planned |
+
+---
+
+## 🏗️ Architecture
+
+### Core Concepts
+
+Rit implements Git's core data model:
+
+1. **Objects** - Content-addressable storage
+   - **Blobs**: Raw file contents
+   - **Trees**: Directory listings
+   - **Commits**: Snapshots with metadata
+
+2. **Index** - Staging area (simplified JSON format)
+
+3. **References** - Branch and tag pointers
+
+### Repository Structure
+
+```
+.rit/
+├── HEAD            # Points to current branch
+├── objects/        # Object database
+│   ├── ab/         # First 2 chars of hash
+│   │   └── cdef... # Remaining hash (zlib compressed)
+│   └── ...
+├── refs/
+│   ├── heads/      # Branch references
+│   └── tags/       # Tag references
+└── index           # Staging area (JSON)
+```
+
+### How It Works
+
+```
+Working Directory → [rit add] → Index → [rit commit] → Objects → [rit log] → History
+```
+
+---
+
+## 📁 Project Structure
+
+```
+rit/
+├── src/
+│   ├── main.rs          # CLI entry point
+│   ├── lib.rs           # Library root, Repository struct
+│   ├── index.rs         # Staging area implementation
+│   ├── commands/        # Command implementations
+│   │   ├── init.rs
+│   │   ├── hash_object.rs
+│   │   ├── cat_file.rs
+│   │   ├── write_tree.rs
+│   │   ├── ls_tree.rs
+│   │   ├── commit_tree.rs
+│   │   ├── log.rs
+│   │   ├── add.rs
+│   │   └── commit.rs
+│   └── objects/         # Git object types
+│       ├── blob.rs
+│       ├── tree.rs
+│       └── commit.rs
+│
+├── website/             # Docusaurus documentation
+│   ├── docs/            # Documentation markdown files
+│   ├── static/img/      # Logo and images
+│   └── docusaurus.config.ts
+│
+├── Cargo.toml           # Rust dependencies
+├── README.md            # This file
+└── TODO.md              # Development tracking (git-ignored)
+```
+
+---
+
+## 🔧 Development
+
+### Building
 
 ```bash
-# Check code compiles
+# Debug build
+cargo build
+
+# Release build (optimized)
+cargo build --release
+
+# Check without building
 cargo check
+```
 
-# Run with arguments
-cargo run -- init
-cargo run -- hash-object -w myfile.txt
-cargo run -- cat-file -p abc123
+### Testing
 
-# Run tests
+```bash
+# Run all tests
 cargo test
 
-# Run with logging
-RUST_LOG=debug cargo run -- init
+# Run specific test
+cargo test test_name
 
+# Run with output
+cargo test -- --nocapture
+```
+
+### Code Quality
+
+```bash
 # Format code
 cargo fmt
 
 # Lint code
 cargo clippy
+
+# Full check
+cargo check && cargo clippy && cargo fmt --check
 ```
 
-### Git Workflow (for this project)
+### Documentation
 
 ```bash
-# After completing each feature
-git add .
-git commit -m "feat: implement <feature>"
-git push origin main
+# Generate Rust docs
+cargo doc --open
+
+# Build Docusaurus docs
+cd website && npm run build
 ```
 
 ---
@@ -293,72 +278,74 @@ git push origin main
 ## 🧪 Testing Your Implementation
 
 ```bash
-# Create a test directory
+# Create a test repository
 mkdir /tmp/rit-test && cd /tmp/rit-test
-
-# Initialize repo
 rit init
 
-# Create some files
-echo "Hello World" > hello.txt
-echo "Another file" > another.txt
+# Create and stage files
+echo "Hello, World!" > hello.txt
+rit add hello.txt
 
-# Hash and store
-rit hash-object -w hello.txt
+# Create a commit
+rit commit -m "Initial commit"
 
-# Verify storage
-ls .rit/objects/
+# View history
+rit log
 
-# Read it back
-rit cat-file -p <hash-from-above>
+# Inspect objects
+rit ls-tree <tree-hash>
+rit cat-file -p <commit-hash>
 ```
 
 ---
 
-## 📝 Commit Message Convention
+## 🎯 Features
 
-We follow [Conventional Commits](https://www.conventionalcommits.org/):
+### ✅ Implemented
 
-```
-feat: add new feature
-fix: bug fix
-docs: documentation changes
-refactor: code refactoring
-test: adding tests
-chore: maintenance tasks
-```
+- ✅ Repository initialization
+- ✅ Blob object storage (hash-object, cat-file)
+- ✅ Tree objects (write-tree, ls-tree)
+- ✅ Commit objects (commit-tree)
+- ✅ Commit history (log)
+- ✅ Staging area (add, commit)
+- ✅ Reference management (HEAD, branches)
 
-### Planned Commits
+### 🔨 In Progress
 
-| # | Message | Description |
-|---|---------|-------------|
-| 1 | `chore: initial project setup` | Cargo.toml, CLI skeleton, README |
-| 2 | `feat: implement init command` | Create .rit directory structure |
-| 3 | `feat: implement hash-object` | Blob hashing and storage |
-| 4 | `feat: implement cat-file` | Read objects from store |
-| 5 | `feat: implement tree objects` | Directory representation |
-| 6 | `feat: implement ls-tree` | List tree contents |
-| 7 | `feat: implement commit-tree` | Low-level commit creation |
-| 8 | `feat: implement log` | Traverse commit history |
-| 9 | `feat: implement staging area` | Index file management |
-| 10 | `feat: implement commit` | High-level commit command |
-| 11 | `feat: implement branch` | Branch management |
-| 12 | `feat: implement checkout` | Switch branches/commits |
-| 13 | `feat: implement tag` | Tag management |
-| 14 | `feat: implement status` | Working tree status |
-| 15 | `feat: implement diff` | Show file differences |
-| 16 | `feat: implement ritignore` | Ignore file patterns |
-| 17 | `feat: implement graph` | Visualize history |
+- 🔨 Status command
+- 🔨 Branch management
+
+### ⏳ Planned
+
+- ⏳ Checkout command
+- ⏳ Diff algorithm
+- ⏳ .ritignore support
+- ⏳ Graph visualization
+- ⏳ Network protocol (clone/push/pull)
 
 ---
 
-## 🎯 Showcase Ideas
+## 📊 Progress
 
-1. **Self-Hosting**: Use `rit` to version control its own source code
-2. **Blog Series**: Document your learning journey
-3. **Graph Visualization**: Output commit DAG as Mermaid.js
-4. **Performance Benchmarks**: Compare with real Git
-5. **Interactive Demo**: Create a web playground
+**10 / 17 core features complete (58.8%)**
+
+- ✅ Phase 1: Project Setup (100%)
+- ✅ Phase 2: Object Storage (100%)
+- ✅ Phase 3: Commits & History (100%)
+- ⏳ Phase 4: Branches & References (0%)
+- ⏳ Phase 5: Advanced Features (0%)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! This is an educational project, so feel free to:
+
+- Report bugs
+- Suggest features
+- Submit pull requests
+- Improve documentation
 
 ---
 
@@ -366,10 +353,34 @@ chore: maintenance tasks
 
 MIT License - feel free to use this for learning!
 
+Copyright (c) 2024 [Your Name](https://github.com/your-username)
+
 ---
 
-## 🙏 Resources
+## 🙏 Acknowledgments
+
+This project is inspired by:
 
 - [Git Internals - Pro Git Book](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
 - [Write Yourself a Git](https://wyag.thb.lt/)
 - [Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+- [Building Git](https://shop.jcoglan.com/building-git/) by James Coglan
+
+---
+
+## 🔗 Links
+
+- 📖 [Documentation](https://srs-sudeep.github.io/rit)
+- 💻 [GitHub Repository](https://github.com/srs-sudeep/rit)
+- 💼 [LinkedIn](https://www.linkedin.com/in/sudeep-ranjan-sahoo-b82355232/)
+- 🐦 [Twitter/X](https://x.com/SUDEEPRANJANSA1)
+
+---
+
+<div align="center">
+
+**Built with Rust and ❤️ by [Sudeep Ranjan Sahoo](https://github.com/srs-sudeep)**
+
+[⭐ Star on GitHub](https://github.com/srs-sudeep/rit) | [📖 Read the Docs](https://srs-sudeep.github.io/rit) | [🐛 Report Bug](https://github.com/srs-sudeep/rit/issues)
+
+</div>
