@@ -9,3 +9,6 @@ website/.cache-loader/
 
 # Vercel
 .vercel
+
+# Personal TODO tracking (git-ignored)
+TODO.md
