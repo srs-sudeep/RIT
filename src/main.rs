@@ -128,7 +128,15 @@ enum Commands {
     /// Show commit logs
     ///
     /// Displays the commit history starting from HEAD.
-    Log,
+    Log {
+        /// Show one commit per line
+        #[arg(long = "oneline")]
+        oneline: bool,
+
+        /// Draw ASCII graph of commit history
+        #[arg(long = "graph")]
+        graph: bool,
+    },
 
     /// Show the working tree status
     ///
@@ -170,10 +178,8 @@ fn main() -> Result<()> {
             // TODO: Implement in Phase 3
         }
 
-        Commands::Log => {
-            println!("Showing commit log...");
-            println!("⚠️  Not yet implemented. Coming in Phase 3!");
-            // TODO: Implement in Phase 3
+        Commands::Log { oneline, graph } => {
+            commands::log::run(*oneline, *graph)?;
         }
 
         Commands::Status => {

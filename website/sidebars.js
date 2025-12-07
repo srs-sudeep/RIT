@@ -15,6 +15,7 @@ const sidebars = {
         'commands/write-tree',
         'commands/ls-tree',
         'commands/commit-tree',
+        'commands/log',
       ],
     },
   ],

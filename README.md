@@ -85,8 +85,8 @@ rit log
 | `rit write-tree` | Create tree object from current directory | ✅ Complete |
 | `rit ls-tree <hash>` | List contents of a tree object | ✅ Complete |
 | `rit commit-tree <tree> -m <msg>` | Create commit object from tree | ✅ Complete |
+| `rit log [--oneline] [--graph]` | Show commit history | ✅ Complete |
 | `rit commit -m <msg>` | Create a new commit | ⏳ Pending |
-| `rit log` | Show commit history | ⏳ Pending |
 | `rit add <file>` | Stage files for commit | ⏳ Pending |
 | `rit status` | Show working tree status | ⏳ Pending |
 | `rit branch [name]` | List or create branches | ⏳ Pending |
