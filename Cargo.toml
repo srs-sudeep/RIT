@@ -1,0 +1,42 @@
+[package]
+name = "rit"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "A Git implementation in Rust for educational purposes"
+readme = "README.md"
+license = "MIT"
+keywords = ["git", "vcs", "version-control", "rust"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+# CLI argument parsing
+clap = { version = "4.4", features = ["derive"] }
+
+# Cryptographic hashing (SHA-1)
+sha1 = "0.10"
+
+# Compression (zlib)
+flate2 = "1.0"
+
+# Hex encoding/decoding
+hex = "0.4"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Directory walking
+walkdir = "2.4"
+
+[dev-dependencies]
+# Temporary directories for testing
+tempfile = "3.10"
+
+[lib]
+name = "rit"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rit"
+path = "src/main.rs"
