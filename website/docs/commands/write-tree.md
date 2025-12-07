@@ -170,6 +170,6 @@ $ rit cat-file -p $(cat tree_hash.txt)
 
 - [hash-object](./hash-object.md) - Store individual files
 - [cat-file](./cat-file.md) - Read tree objects back
-- ls-tree - List tree contents (coming in Commit 6)
+- [ls-tree](./ls-tree.md) - List tree contents
 - [Architecture](../architecture.md) - Tree object format details
 

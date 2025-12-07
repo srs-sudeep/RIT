@@ -79,6 +79,24 @@ enum Commands {
     #[command(name = "write-tree")]
     WriteTree,
 
+    /// List the contents of a tree object
+    ///
+    /// Displays tree entries in a human-readable format,
+    /// similar to Git's ls-tree command.
+    #[command(name = "ls-tree")]
+    LsTree {
+        /// The tree hash to list
+        tree_hash: String,
+
+        /// Recursively list all subtrees
+        #[arg(short = 'r')]
+        recursive: bool,
+
+        /// Show only names (no mode, type, or hash)
+        #[arg(long = "name-only")]
+        name_only: bool,
+    },
+
     /// Record changes to the repository
     ///
     /// Creates a new commit with the current tree state.
@@ -117,6 +135,10 @@ fn main() -> Result<()> {
 
         Commands::WriteTree => {
             commands::write_tree::run()?;
+        }
+
+        Commands::LsTree { tree_hash, recursive, name_only } => {
+            commands::ls_tree::run(tree_hash, *recursive, *name_only)?;
         }
 
         Commands::Commit { message } => {

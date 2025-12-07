@@ -70,6 +70,12 @@ cargo build --release
 
 # Read it back
 ./target/release/rit cat-file -p <hash>
+
+# Create a tree from current directory
+./target/release/rit write-tree
+
+# List tree contents
+./target/release/rit ls-tree <tree-hash>
 ```
 
 ## Project Structure

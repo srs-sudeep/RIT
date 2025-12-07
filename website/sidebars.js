@@ -13,6 +13,7 @@ const sidebars = {
         'commands/hash-object',
         'commands/cat-file',
         'commands/write-tree',
+        'commands/ls-tree',
       ],
     },
   ],
