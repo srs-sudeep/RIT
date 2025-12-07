@@ -14,6 +14,7 @@ const sidebars = {
         'commands/cat-file',
         'commands/write-tree',
         'commands/ls-tree',
+        'commands/commit-tree',
       ],
     },
   ],

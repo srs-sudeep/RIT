@@ -97,6 +97,25 @@ enum Commands {
         name_only: bool,
     },
 
+    /// Create a commit object from a tree
+    ///
+    /// This is a plumbing command that creates a commit object
+    /// from a tree hash, optionally with parent commits.
+    #[command(name = "commit-tree")]
+    CommitTree {
+        /// The tree hash to commit
+        #[arg(value_name = "TREE_HASH")]
+        tree_hash: String,
+
+        /// Parent commit hash (can be specified multiple times: -p <hash1> -p <hash2>)
+        #[arg(short = 'p', long = "parent", num_args = 0..)]
+        parents: Vec<String>,
+
+        /// Commit message
+        #[arg(short, long)]
+        message: String,
+    },
+
     /// Record changes to the repository
     ///
     /// Creates a new commit with the current tree state.
@@ -139,6 +158,10 @@ fn main() -> Result<()> {
 
         Commands::LsTree { tree_hash, recursive, name_only } => {
             commands::ls_tree::run(tree_hash, *recursive, *name_only)?;
+        }
+
+        Commands::CommitTree { tree_hash, parents, message } => {
+            commands::commit_tree::run(tree_hash, parents.clone(), message)?;
         }
 
         Commands::Commit { message } => {

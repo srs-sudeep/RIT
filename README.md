@@ -84,6 +84,7 @@ rit log
 | `rit cat-file -p <hash>` | Pretty-print object contents | ✅ Complete |
 | `rit write-tree` | Create tree object from current directory | ✅ Complete |
 | `rit ls-tree <hash>` | List contents of a tree object | ✅ Complete |
+| `rit commit-tree <tree> -m <msg>` | Create commit object from tree | ✅ Complete |
 | `rit commit -m <msg>` | Create a new commit | ⏳ Pending |
 | `rit log` | Show commit history | ⏳ Pending |
 | `rit add <file>` | Stage files for commit | ⏳ Pending |
