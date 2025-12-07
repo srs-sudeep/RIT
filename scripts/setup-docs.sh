@@ -8,11 +8,12 @@ echo "🦖 Setting up Docusaurus documentation..."
 # Navigate to project root
 cd "$(dirname "$0")/.."
 
-# Create Docusaurus site
-npx create-docusaurus@latest website classic --typescript
+# Create Docusaurus site (if it doesn't exist)
+if [ ! -d "website" ]; then
+    npx create-docusaurus@latest website classic --typescript
+fi
 
-# Copy our docs into docusaurus
-cp -r docs/* website/docs/
+# No need to copy - Docusaurus will read from ../docs directly
 
 # Create sidebars config
 cat > website/sidebars.js << 'EOF'

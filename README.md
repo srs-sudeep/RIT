@@ -170,28 +170,82 @@ RIT/
 
 ## 📚 Documentation
 
-We use [Docusaurus](https://docusaurus.io/) for documentation.
+We use [Docusaurus](https://docusaurus.io/) for documentation. The `docs/` folder contains all markdown files, and Docusaurus reads directly from it (no copying needed).
 
-### Setup Documentation Site
+### Local Development
 
 ```bash
 # Navigate to project root
 cd /Users/srs/Desktop/Dev/RIT
 
-# Create Docusaurus site
-npx create-docusaurus@latest website classic --typescript
+# Setup Docusaurus (one-time)
+./scripts/setup-docs.sh
 
 # Start documentation server
 cd website
 npm start
+# Opens at http://localhost:3000
 ```
 
-### Build Documentation
+### Deploy to Vercel
+
+#### Option 1: Vercel CLI (Recommended)
 
 ```bash
-cd website
-npm run build
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy from project root
+vercel
+
+# Follow prompts:
+# - Set up and deploy? Yes
+# - Which scope? (your account)
+# - Link to existing project? No
+# - Project name? rit-docs (or your choice)
+# - Directory? ./website
+# - Override settings? No
+
+# For production deployment
+vercel --prod
 ```
+
+#### Option 2: Vercel Dashboard
+
+1. Go to [vercel.com](https://vercel.com) and sign in
+2. Click **"Add New Project"**
+3. Import your Git repository
+4. Configure:
+   - **Framework Preset**: Other
+   - **Root Directory**: `website`
+   - **Build Command**: `npm install && npm run build`
+   - **Output Directory**: `build`
+5. Click **Deploy**
+
+#### Option 3: GitHub Integration
+
+1. Push your code to GitHub
+2. Go to Vercel Dashboard → Add Project
+3. Import from GitHub
+4. Vercel will auto-detect the `vercel.json` configuration
+
+### Documentation Structure
+
+```
+docs/                    # Source markdown files (edit these!)
+├── intro.md
+├── architecture.md
+└── commands/
+    ├── init.md
+    ├── hash-object.md
+    └── cat-file.md
+
+website/                 # Docusaurus site (generated)
+├── docusaurus.config.ts # Points to ../docs
+└── build/               # Built site (for deployment)
+```
+
+**Note**: Edit files in `docs/`, not `website/docs/`. Docusaurus reads directly from the root `docs/` folder.
 
 ---
 

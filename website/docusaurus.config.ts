@@ -6,8 +6,8 @@ const config: Config = {
   title: 'Rit',
   tagline: 'A Git Implementation in Rust',
   favicon: 'img/favicon.ico',
-  url: 'https://your-username.github.io',
-  baseUrl: '/rit/',
+  url: 'https://rit-docs.vercel.app', // Update with your Vercel domain
+  baseUrl: '/',
   organizationName: 'your-username',
   projectName: 'rit',
   onBrokenLinks: 'throw',
@@ -21,6 +21,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: '../docs', // Use root docs folder directly
           sidebarPath: './sidebars.js',
           editUrl: 'https://github.com/your-username/rit/tree/main/',
         },
