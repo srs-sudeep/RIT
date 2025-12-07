@@ -63,6 +63,9 @@ rit hash-object -w README.md
 # Read an object
 rit cat-file -p <hash>
 
+# Create a tree from current directory
+rit write-tree
+
 # Create a commit
 rit commit -m "Initial commit"
 
@@ -76,10 +79,10 @@ rit log
 
 | Command | Description | Status |
 |---------|-------------|--------|
-| `rit init` | Initialize a new repository | 🔨 In Progress |
-| `rit hash-object [-w] <file>` | Hash file contents, optionally write to object store | ⏳ Pending |
-| `rit cat-file -p <hash>` | Pretty-print object contents | ⏳ Pending |
-| `rit write-tree` | Create tree object from current directory | ⏳ Pending |
+| `rit init` | Initialize a new repository | ✅ Complete |
+| `rit hash-object [-w] <file>` | Hash file contents, optionally write to object store | ✅ Complete |
+| `rit cat-file -p <hash>` | Pretty-print object contents | ✅ Complete |
+| `rit write-tree` | Create tree object from current directory | ✅ Complete |
 | `rit ls-tree <hash>` | List contents of a tree object | ⏳ Pending |
 | `rit commit -m <msg>` | Create a new commit | ⏳ Pending |
 | `rit log` | Show commit history | ⏳ Pending |
@@ -170,7 +173,7 @@ RIT/
 
 ## 📚 Documentation
 
-We use [Docusaurus](https://docusaurus.io/) for documentation. The `docs/` folder contains all markdown files, and Docusaurus reads directly from it (no copying needed).
+We use [Docusaurus](https://docusaurus.io/) for documentation. All documentation files are in the `website/docs/` folder.
 
 ### Local Development
 
@@ -232,20 +235,20 @@ vercel --prod
 ### Documentation Structure
 
 ```
-docs/                    # Source markdown files (edit these!)
-├── intro.md
-├── architecture.md
-└── commands/
-    ├── init.md
-    ├── hash-object.md
-    └── cat-file.md
-
-website/                 # Docusaurus site (generated)
-├── docusaurus.config.ts # Points to ../docs
+website/                 # Docusaurus site
+├── docs/                # Documentation markdown files (edit these!)
+│   ├── intro.md
+│   ├── architecture.md
+│   └── commands/
+│       ├── init.md
+│       ├── hash-object.md
+│       ├── cat-file.md
+│       └── write-tree.md
+├── docusaurus.config.ts # Docusaurus configuration
 └── build/               # Built site (for deployment)
 ```
 
-**Note**: Edit files in `docs/`, not `website/docs/`. Docusaurus reads directly from the root `docs/` folder.
+**Note**: Edit documentation files directly in `website/docs/` folder.
 
 ---
 

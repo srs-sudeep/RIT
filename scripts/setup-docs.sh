@@ -13,7 +13,8 @@ if [ ! -d "website" ]; then
     npx create-docusaurus@latest website classic --typescript
 fi
 
-# No need to copy - Docusaurus will read from ../docs directly
+# Documentation files should be in website/docs/
+# Edit files directly in website/docs/ folder
 
 # Create sidebars config
 cat > website/sidebars.js << 'EOF'

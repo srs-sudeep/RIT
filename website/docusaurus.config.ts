@@ -21,9 +21,9 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: '../docs', // Use root docs folder directly
+          path: './docs', // Use website/docs folder
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/your-username/rit/tree/main/',
+          editUrl: 'https://github.com/your-username/rit/tree/main/website/',
         },
         blog: false,
         theme: {

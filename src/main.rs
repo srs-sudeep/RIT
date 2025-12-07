@@ -72,6 +72,13 @@ enum Commands {
         object_hash: String,
     },
 
+    /// Create a tree object from the current directory
+    ///
+    /// Walks the working directory, hashes all files as blobs,
+    /// and creates a tree object representing the directory structure.
+    #[command(name = "write-tree")]
+    WriteTree,
+
     /// Record changes to the repository
     ///
     /// Creates a new commit with the current tree state.
@@ -106,6 +113,10 @@ fn main() -> Result<()> {
 
         Commands::CatFile { pretty_print, object_hash } => {
             commands::cat_file::run(object_hash, *pretty_print)?;
+        }
+
+        Commands::WriteTree => {
+            commands::write_tree::run()?;
         }
 
         Commands::Commit { message } => {
