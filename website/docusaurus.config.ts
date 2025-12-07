@@ -3,11 +3,11 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Rit',
+  title: 'RIT',
   tagline: 'A Git Implementation in Rust',
   favicon: 'img/rit-logo-small.svg',
   url: 'https://srs-sudeep.github.io',
-  baseUrl: '/rit/',
+  baseUrl: '/',
   organizationName: 'srs-sudeep',
   projectName: 'rit',
   onBrokenLinks: 'throw',

@@ -299,45 +299,6 @@ rit cat-file -p <commit-hash>
 
 ---
 
-## 🎯 Features
-
-### ✅ Implemented
-
-- ✅ Repository initialization
-- ✅ Blob object storage (hash-object, cat-file)
-- ✅ Tree objects (write-tree, ls-tree)
-- ✅ Commit objects (commit-tree)
-- ✅ Commit history (log)
-- ✅ Staging area (add, commit)
-- ✅ Reference management (HEAD, branches)
-
-### 🔨 In Progress
-
-- 🔨 Status command
-- 🔨 Branch management
-
-### ⏳ Planned
-
-- ⏳ Checkout command
-- ⏳ Diff algorithm
-- ⏳ .ritignore support
-- ⏳ Graph visualization
-- ⏳ Network protocol (clone/push/pull)
-
----
-
-## 📊 Progress
-
-**10 / 17 core features complete (58.8%)**
-
-- ✅ Phase 1: Project Setup (100%)
-- ✅ Phase 2: Object Storage (100%)
-- ✅ Phase 3: Commits & History (100%)
-- ⏳ Phase 4: Branches & References (0%)
-- ⏳ Phase 5: Advanced Features (0%)
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! This is an educational project, so feel free to:
