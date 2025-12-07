@@ -314,7 +314,7 @@ Contributions are welcome! This is an educational project, so feel free to:
 
 MIT License - feel free to use this for learning!
 
-Copyright (c) 2024 [Your Name](https://github.com/your-username)
+Copyright (c) 2025 [Your Name](https://github.com/srs-sudeep)
 
 ---
 
