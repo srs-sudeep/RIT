@@ -138,6 +138,14 @@ enum Commands {
         graph: bool,
     },
 
+    /// Add file contents to the staging area
+    ///
+    /// Stages files for the next commit by adding them to the index.
+    Add {
+        /// Files or directories to stage
+        paths: Vec<String>,
+    },
+
     /// Show the working tree status
     ///
     /// Displays staged, unstaged, and untracked files.
@@ -180,6 +188,10 @@ fn main() -> Result<()> {
 
         Commands::Log { oneline, graph } => {
             commands::log::run(*oneline, *graph)?;
+        }
+
+        Commands::Add { paths } => {
+            commands::add::run(paths.clone())?;
         }
 
         Commands::Status => {

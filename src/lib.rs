@@ -45,6 +45,7 @@
 
 pub mod commands;
 pub mod objects;
+pub mod index;
 
 use std::path::{Path, PathBuf};
 use anyhow::{Context, Result};
