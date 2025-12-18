@@ -124,6 +124,7 @@ npm start
   - [tag](website/docs/commands/tag.md)
   - [status](website/docs/commands/status.md)
   - [diff](website/docs/commands/diff.md)
+  - [graph](website/docs/commands/graph.md)
 
 ---
 
@@ -147,6 +148,7 @@ npm start
 | `rit tag [name]` | Create, list, or delete tags | ✅ |
 | `rit status` | Show working tree status | ✅ |
 | `rit diff [--cached]` | Show changes between commits/index/working dir | ✅ |
+| `rit graph [--format]` | Visualize commit DAG | ✅ |
 
 ### Planned Commands
 

@@ -211,6 +211,19 @@ enum Commands {
         /// Second commit to compare
         commit2: Option<String>,
     },
+
+    /// Visualize the commit DAG (Directed Acyclic Graph)
+    ///
+    /// Generates a graph visualization of all commits and branches.
+    Graph {
+        /// Output format: ascii, mermaid, or dot
+        #[arg(short, long, default_value = "ascii")]
+        format: String,
+
+        /// Output file (if not specified, prints to stdout)
+        #[arg(short, long)]
+        output: Option<String>,
+    },
 }
 
 fn main() -> Result<()> {
@@ -271,6 +284,10 @@ fn main() -> Result<()> {
 
         Commands::Diff { cached, commit1, commit2 } => {
             commands::diff::run(*cached, commit1.clone(), commit2.clone())?;
+        }
+
+        Commands::Graph { format, output } => {
+            commands::graph::run(format, output.clone())?;
         }
     }
 

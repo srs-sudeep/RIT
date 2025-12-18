@@ -24,6 +24,7 @@ const sidebars = {
         'commands/tag',
         'commands/status',
         'commands/diff',
+        'commands/graph',
       ],
     },
   ],
