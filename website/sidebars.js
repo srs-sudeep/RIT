@@ -19,6 +19,7 @@ const sidebars = {
         'commands/add',
         'commands/commit',
         'commands/branch',
+        'commands/checkout',
       ],
     },
   ],

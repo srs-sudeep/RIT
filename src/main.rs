@@ -157,6 +157,21 @@ enum Commands {
         force: bool,
     },
 
+    /// Switch branches or restore files
+    ///
+    /// Checkout a branch, commit, or individual files from a commit.
+    Checkout {
+        /// Branch name, commit hash, or "HEAD"
+        reference: String,
+
+        /// File path to checkout (for file checkout)
+        file_path: Option<String>,
+
+        /// Force checkout, overwriting local changes
+        #[arg(short, long)]
+        force: bool,
+    },
+
     /// Show the working tree status
     ///
     /// Displays staged, unstaged, and untracked files.
@@ -205,6 +220,10 @@ fn main() -> Result<()> {
 
         Commands::Branch { branch_name, delete, force } => {
             commands::branch::run(branch_name.clone(), *delete, *force)?;
+        }
+
+        Commands::Checkout { reference, file_path, force } => {
+            commands::checkout::run(reference, file_path.clone(), *force)?;
         }
 
         Commands::Status => {
