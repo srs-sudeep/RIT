@@ -30,4 +30,6 @@ pub mod add;
 pub mod commit;
 pub mod branch;
 pub mod checkout;
+pub mod tag;
+pub mod status;
 

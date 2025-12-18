@@ -120,6 +120,8 @@ npm start
   - [commit](website/docs/commands/commit.md)
   - [branch](website/docs/commands/branch.md)
   - [checkout](website/docs/commands/checkout.md)
+  - [tag](website/docs/commands/tag.md)
+  - [status](website/docs/commands/status.md)
 
 ---
 
@@ -140,12 +142,13 @@ npm start
 | `rit commit -m <msg>` | Create a new commit | ✅ |
 | `rit branch [name]` | List or create branches | ✅ |
 | `rit checkout <ref>` | Switch branches or restore files | ✅ |
+| `rit tag [name]` | Create, list, or delete tags | ✅ |
+| `rit status` | Show working tree status | ✅ |
 
 ### Planned Commands
 
 | Command | Description | Status |
 |---------|-------------|--------|
-| `rit status` | Show working tree status | 🔨 In Progress |
 | `rit diff` | Show changes between commits | ⏳ Planned |
 | `rit graph` | Visualize commit history | ⏳ Planned |
 

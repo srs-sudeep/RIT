@@ -20,6 +20,8 @@ const sidebars = {
         'commands/commit',
         'commands/branch',
         'commands/checkout',
+        'commands/tag',
+        'commands/status',
       ],
     },
   ],
