@@ -108,6 +108,7 @@ npm start
 
 - **[Introduction](website/docs/intro.md)** - Getting started with Rit
 - **[Architecture](website/docs/architecture.md)** - How Git/Rit works internally
+- **[.ritignore](website/docs/ritignore.md)** - Ignore file patterns
 - **[Commands](website/docs/commands/)** - Complete command reference
   - [init](website/docs/commands/init.md)
   - [hash-object](website/docs/commands/hash-object.md)

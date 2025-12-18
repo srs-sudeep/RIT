@@ -23,6 +23,7 @@ use walkdir::WalkDir;
 use crate::Repository;
 use crate::index::{Index, IndexEntry};
 use crate::commands::hash_object;
+use crate::ignore;
 
 /// Get file metadata
 fn get_file_metadata(file_path: &Path) -> Result<(u64, u64)> {
@@ -47,6 +48,7 @@ fn add_file_to_index(
     index: &mut Index,
     file_path: &Path,
     repo_root: &Path,
+    ignore_rules: &ignore::IgnoreRules,
 ) -> Result<()> {
     // Get relative path from repo root
     let relative_path = file_path.strip_prefix(repo_root)
@@ -56,6 +58,16 @@ fn add_file_to_index(
 
     // Skip .rit directory
     if relative_path.starts_with(".rit/") {
+        return Ok(());
+    }
+    
+    // Skip .ritignore file itself
+    if relative_path == ".ritignore" {
+        return Ok(());
+    }
+    
+    // Check ignore rules
+    if ignore_rules.is_ignored(&relative_path, false) {
         return Ok(());
     }
 
@@ -88,10 +100,11 @@ fn add_path(
     index: &mut Index,
     path: &Path,
     repo_root: &Path,
+    ignore_rules: &ignore::IgnoreRules,
 ) -> Result<()> {
     if path.is_file() {
         // Single file
-        add_file_to_index(repo, index, path, repo_root)?;
+        add_file_to_index(repo, index, path, repo_root, ignore_rules)?;
     } else if path.is_dir() {
         // Directory - walk recursively
         for entry in WalkDir::new(path)
@@ -100,8 +113,21 @@ fn add_path(
         {
             let entry_path = entry.path();
             
+            // Check if directory should be skipped
+            if entry_path.is_dir() {
+                let relative = entry_path.strip_prefix(repo_root)
+                    .ok()
+                    .map(|p| p.to_string_lossy().to_string());
+                if let Some(rel) = relative {
+                    if ignore_rules.is_ignored(&rel, true) {
+                        // Skip this directory and its contents
+                        continue;
+                    }
+                }
+            }
+            
             if entry_path.is_file() {
-                add_file_to_index(repo, index, entry_path, repo_root)?;
+                add_file_to_index(repo, index, entry_path, repo_root, ignore_rules)?;
             }
         }
     } else {
@@ -135,6 +161,9 @@ pub fn run(paths: Vec<String>) -> Result<()> {
 
     // Load existing index
     let mut index = Index::load(&index_path)?;
+    
+    // Load ignore rules
+    let ignore_rules = ignore::load_ignore_rules(&repo_root)?;
 
     // Add each path
     for path_str in paths {
@@ -150,7 +179,7 @@ pub fn run(paths: Vec<String>) -> Result<()> {
                 .context(format!("Path does not exist: {}", path_str))?
         };
 
-        add_path(&repo, &mut index, &full_path, &repo_root)?;
+        add_path(&repo, &mut index, &full_path, &repo_root, &ignore_rules)?;
     }
 
     // Save updated index

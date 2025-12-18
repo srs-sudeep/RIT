@@ -108,7 +108,11 @@ $ rit add file.txt
 ## What Doesn't Get Staged
 
 - `.rit/` directory (always excluded)
+- `.ritignore` file itself
+- Files matching patterns in `.ritignore`
 - Files outside the repository
+
+See [.ritignore](../ritignore.md) for details on ignore patterns.
 
 ## Index Location
 

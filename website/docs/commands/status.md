@@ -35,6 +35,8 @@ Files that have been modified in the working directory but haven't been added to
 
 Files in the working directory that aren't tracked by Rit. Use `rit add` to start tracking them.
 
+**Note**: Files matching patterns in `.ritignore` are not shown as untracked. See [.ritignore](../ritignore.md) for details.
+
 ## Examples
 
 ### Clean working tree

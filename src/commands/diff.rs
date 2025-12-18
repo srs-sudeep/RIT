@@ -22,6 +22,7 @@ use anyhow::{Context, Result};
 use crate::Repository;
 use crate::index::Index;
 use crate::commands::{cat_file, log};
+use crate::ignore;
 
 /// Represents a single edit operation in a diff
 #[derive(Debug, Clone, PartialEq)]
@@ -304,12 +305,17 @@ fn diff_file(
 fn diff_working_vs_index(repo: &Repository) -> Result<()> {
     let index = Index::load(&repo.index_path())?;
     
+    // Load ignore rules
+    let ignore_rules = ignore::load_ignore_rules(&repo.root)?;
+    
     // Get all files that are in index or working directory
     let mut all_files = std::collections::HashSet::new();
     
-    // Add files from index
+    // Add files from index (only if not ignored)
     for entry in index.entries() {
-        all_files.insert(entry.path.clone());
+        if !ignore_rules.is_ignored(&entry.path, false) {
+            all_files.insert(entry.path.clone());
+        }
     }
     
     // Add files from working directory
@@ -322,7 +328,7 @@ fn diff_working_vs_index(repo: &Repository) -> Result<()> {
         if path.is_file() {
             if let Ok(relative) = path.strip_prefix(&repo.root) {
                 let rel_str = relative.to_string_lossy().to_string();
-                if !rel_str.starts_with(".rit/") {
+                if !rel_str.starts_with(".rit/") && !ignore_rules.is_ignored(&rel_str, false) {
                     all_files.insert(rel_str);
                 }
             }

@@ -5,6 +5,7 @@ const sidebars = {
   docs: [
     'intro',
     'architecture',
+    'ritignore',
     {
       type: 'category',
       label: 'Commands',

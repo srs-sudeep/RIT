@@ -16,6 +16,7 @@ use walkdir::WalkDir;
 use crate::Repository;
 use crate::index::Index;
 use crate::commands::{log, hash_object, cat_file};
+use crate::ignore;
 
 /// Compare working directory with index and HEAD
 pub fn run() -> Result<()> {
@@ -23,6 +24,9 @@ pub fn run() -> Result<()> {
     
     // Load index
     let index = Index::load(&repo.index_path())?;
+    
+    // Load ignore rules
+    let ignore_rules = ignore::load_ignore_rules(&repo.root)?;
     
     // Get HEAD commit
     let head_commit = log::read_head(&repo)?;
@@ -46,7 +50,7 @@ pub fn run() -> Result<()> {
     let mut untracked = Vec::new();
     
     // Get all files in working directory
-    let working_files = get_working_files(&repo.root)?;
+    let working_files = get_working_files(&repo.root, &ignore_rules)?;
     
     // Compare working directory with index
     for file_path in &working_files {
@@ -113,7 +117,7 @@ pub fn run() -> Result<()> {
 }
 
 /// Get all files in the working directory
-fn get_working_files(root: &Path) -> Result<Vec<PathBuf>> {
+fn get_working_files(root: &Path, ignore_rules: &crate::ignore::IgnoreRules) -> Result<Vec<PathBuf>> {
     let mut files = Vec::new();
     
     for entry in WalkDir::new(root)
@@ -128,6 +132,21 @@ fn get_working_files(root: &Path) -> Result<Vec<PathBuf>> {
             .unwrap_or(false)
         {
             continue;
+        }
+        
+        // Check ignore rules
+        if let Ok(relative) = path.strip_prefix(root) {
+            let relative_str = relative.to_string_lossy().replace('\\', "/");
+            
+            // Skip if directory is ignored
+            if path.is_dir() && ignore_rules.is_ignored(&relative_str, true) {
+                continue;
+            }
+            
+            // Skip if file is ignored
+            if path.is_file() && ignore_rules.is_ignored(&relative_str, false) {
+                continue;
+            }
         }
         
         if path.is_file() {
@@ -287,7 +306,8 @@ mod tests {
         std::fs::write(temp.path().join("file1.txt"), "content1").unwrap();
         std::fs::write(temp.path().join("file2.txt"), "content2").unwrap();
         
-        let files = get_working_files(temp.path()).unwrap();
+        let ignore_rules = ignore::IgnoreRules::new();
+        let files = get_working_files(temp.path(), &ignore_rules).unwrap();
         assert!(files.len() >= 2);
     }
 }
