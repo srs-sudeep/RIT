@@ -172,6 +172,26 @@ enum Commands {
         force: bool,
     },
 
+    /// Create, list, or delete tags
+    ///
+    /// Tags are references to specific commits, useful for marking releases.
+    Tag {
+        /// Tag name to create or delete
+        tag_name: Option<String>,
+
+        /// Delete the tag
+        #[arg(short = 'd')]
+        delete: bool,
+
+        /// Create an annotated tag (with message)
+        #[arg(short = 'a')]
+        annotated: bool,
+
+        /// Tag message (for annotated tags)
+        #[arg(short, long)]
+        message: Option<String>,
+    },
+
     /// Show the working tree status
     ///
     /// Displays staged, unstaged, and untracked files.
@@ -226,10 +246,12 @@ fn main() -> Result<()> {
             commands::checkout::run(reference, file_path.clone(), *force)?;
         }
 
+        Commands::Tag { tag_name, delete, annotated, message } => {
+            commands::tag::run(tag_name.clone(), *delete, *annotated, message.clone())?;
+        }
+
         Commands::Status => {
-            println!("Showing status...");
-            println!("⚠️  Not yet implemented. Coming in Phase 5!");
-            // TODO: Implement in Phase 5
+            commands::status::run()?;
         }
     }
 
