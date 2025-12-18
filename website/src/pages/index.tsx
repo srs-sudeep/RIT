@@ -14,7 +14,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <img
-          src="/rit/img/rit-logo.svg"
+          src="/img/rit-logo.svg"
           alt="Rit Logo"
           style={{width: '200px', marginBottom: '2rem'}}
         />

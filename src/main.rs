@@ -1,17 +1,4 @@
-//! # Rit CLI
-//!
-//! The command-line interface for Rit, a Git implementation in Rust.
-//!
-//! ## Usage
-//!
-//! ```bash
-//! rit <command> [options]
-//! ```
-//!
-//! ## Available Commands
-//!
-//! - `init` - Initialize a new repository
-//! - `hash-object` - Compute object hash
+ 
 //! - `cat-file` - Read object contents
 //! - `commit` - Create a new commit
 
@@ -153,6 +140,23 @@ enum Commands {
         paths: Vec<String>,
     },
 
+    /// List, create, or delete branches
+    ///
+    /// Without arguments, lists all branches. With a branch name,
+    /// creates a new branch pointing to the current HEAD.
+    Branch {
+        /// Branch name to create or delete
+        branch_name: Option<String>,
+
+        /// Delete the branch
+        #[arg(short = 'd')]
+        delete: bool,
+
+        /// Force delete (even if not merged)
+        #[arg(short = 'D')]
+        force: bool,
+    },
+
     /// Show the working tree status
     ///
     /// Displays staged, unstaged, and untracked files.
@@ -197,6 +201,10 @@ fn main() -> Result<()> {
 
         Commands::Add { paths } => {
             commands::add::run(paths.clone())?;
+        }
+
+        Commands::Branch { branch_name, delete, force } => {
+            commands::branch::run(branch_name.clone(), *delete, *force)?;
         }
 
         Commands::Status => {

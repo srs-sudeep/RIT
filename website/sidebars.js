@@ -18,6 +18,7 @@ const sidebars = {
         'commands/log',
         'commands/add',
         'commands/commit',
+        'commands/branch',
       ],
     },
   ],

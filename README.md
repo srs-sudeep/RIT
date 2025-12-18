@@ -118,6 +118,7 @@ npm start
   - [log](website/docs/commands/log.md)
   - [add](website/docs/commands/add.md)
   - [commit](website/docs/commands/commit.md)
+  - [branch](website/docs/commands/branch.md)
 
 ---
 
@@ -136,13 +137,13 @@ npm start
 | `rit log [--oneline] [--graph]` | Show commit history | ✅ |
 | `rit add <file>...` | Stage files for commit | ✅ |
 | `rit commit -m <msg>` | Create a new commit | ✅ |
+| `rit branch [name]` | List or create branches | ✅ |
 
 ### Planned Commands
 
 | Command | Description | Status |
 |---------|-------------|--------|
 | `rit status` | Show working tree status | 🔨 In Progress |
-| `rit branch [name]` | List or create branches | ⏳ Planned |
 | `rit checkout <ref>` | Switch branches or restore files | ⏳ Planned |
 | `rit diff` | Show changes between commits | ⏳ Planned |
 | `rit graph` | Visualize commit history | ⏳ Planned |
