@@ -22,6 +22,7 @@ const sidebars = {
         'commands/checkout',
         'commands/tag',
         'commands/status',
+        'commands/diff',
       ],
     },
   ],

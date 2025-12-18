@@ -122,6 +122,7 @@ npm start
   - [checkout](website/docs/commands/checkout.md)
   - [tag](website/docs/commands/tag.md)
   - [status](website/docs/commands/status.md)
+  - [diff](website/docs/commands/diff.md)
 
 ---
 
@@ -144,6 +145,7 @@ npm start
 | `rit checkout <ref>` | Switch branches or restore files | ✅ |
 | `rit tag [name]` | Create, list, or delete tags | ✅ |
 | `rit status` | Show working tree status | ✅ |
+| `rit diff [--cached]` | Show changes between commits/index/working dir | ✅ |
 
 ### Planned Commands
 

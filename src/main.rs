@@ -196,6 +196,21 @@ enum Commands {
     ///
     /// Displays staged, unstaged, and untracked files.
     Status,
+
+    /// Show changes between commits, index, and working directory
+    ///
+    /// Displays differences using unified diff format.
+    Diff {
+        /// Show staged changes (index vs HEAD)
+        #[arg(long)]
+        cached: bool,
+
+        /// First commit to compare
+        commit1: Option<String>,
+
+        /// Second commit to compare
+        commit2: Option<String>,
+    },
 }
 
 fn main() -> Result<()> {
@@ -252,6 +267,10 @@ fn main() -> Result<()> {
 
         Commands::Status => {
             commands::status::run()?;
+        }
+
+        Commands::Diff { cached, commit1, commit2 } => {
+            commands::diff::run(*cached, commit1.clone(), commit2.clone())?;
         }
     }
 
